@@ -588,6 +588,7 @@ dependencies = [
     { name = "matplotlib" },
     { name = "pandas" },
     { name = "pydantic-settings" },
+    { name = "pytest" },
     { name = "scikit-learn" },
     { name = "xgboost" },
 ]
@@ -609,6 +610,7 @@ requires-dist = [
     { name = "mypy", marker = "extra == 'dev'" },
     { name = "pandas", specifier = ">=3.0.5" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
+    { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "pytest-cov", marker = "extra == 'dev'" },
     { name = "ruff", marker = "extra == 'dev'" },

@@ -63,7 +63,10 @@ def preprocess_memory(df: pd.DataFrame) -> pd.DataFrame:
 
     new = df["Memory"].str.split("+", n=1, expand=True)
     first = new[0].str.strip()
-    second = new[1]
+    if 1 in new.columns:
+       second = new[1].fillna("0")
+    else:
+       second = pd.Series("0", index=df.index)
 
     df["Layer1HDD"] = first.apply(lambda x: 1 if "HDD" in x else 0)
     df["Layer1SSD"] = first.apply(lambda x: 1 if "SSD" in x else 0)
