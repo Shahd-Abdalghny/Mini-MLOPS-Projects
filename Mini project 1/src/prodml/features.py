@@ -99,7 +99,6 @@ def preprocess_memory(df: pd.DataFrame) -> pd.DataFrame:
 
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     """Build features for the DataFrame by applying various preprocessing functions."""
-    df.drop(columns=["Unnamed: 0"], inplace=True)
     df = preprocess_screen_resolution(df)
     df = preprocess_cpu(df)
     df = preprocess_gpu(df)

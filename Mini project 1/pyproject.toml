@@ -6,11 +6,16 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi>=0.141.1",
+    "httpx>=0.28.1",
     "matplotlib>=3.11.1",
+    "onnxmltools>=1.16.0",
+    "onnxruntime>=1.29.0",
     "pandas>=3.0.5",
     "pydantic-settings>=2.15.0",
     "pytest>=9.1.1",
     "scikit-learn>=1.9.0",
+    "skl2onnx>=1.20.0",
+    "uvicorn>=0.52.4",
     "xgboost>=3.4.1",
 ]
 
@@ -23,3 +28,11 @@ prodml-train = "prodml.train:main"
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = "--cov=src/prodml --cov-fail-under=70"
+
+[dependency-groups]
+dev = [
+    "pytest-cov>=7.1.0",
+]

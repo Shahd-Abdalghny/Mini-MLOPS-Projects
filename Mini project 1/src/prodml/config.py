@@ -5,6 +5,7 @@ class Settings(BaseSettings):
 
     data_path: str = "data/raw/laptop_data.csv"
     model_path: str = "models/model.pkl"
+    onnx_model_path: str = "models/model.onnx"
     test_size: float = 0.15
     random_state: int = 2
     random_seed: int = 42
@@ -28,7 +29,27 @@ class Settings(BaseSettings):
     et_max_features: float = 0.75
     et_max_depth: int = 10
     et_bootstrap: bool = True
-
+    FEATURE_COLUMNS: list[str] = [
+    "Company", "TypeName", "Ram", "Weight", "Touchscreen", "Ips",
+    "Cpu brand", "Gpu brand", "os", "HDD", "SSD", "ppi",
+]
+    COLUMN_TO_ONNX_NAME: dict[str, str] = {
+    "Company": "Company",
+    "TypeName": "TypeName",
+    "Ram": "Ram",
+    "Weight": "Weight",
+    "Touchscreen": "Touchscreen",
+    "Ips": "Ips",
+    "Cpu brand": "Cpu_brand",
+    "Gpu brand": "Gpu_brand",
+    "os": "os",
+    "HDD": "HDD",
+    "SSD": "SSD",
+    "ppi": "ppi",
+}
+    TEXT_COLUMNS: set[str] = {"Company", "TypeName", "Cpu brand", "Gpu brand", "os"}
+    INT_COLUMNS: set[str] = {"Ram", "Touchscreen", "Ips", "HDD", "SSD"}
+    
 settings = Settings()    
 
 

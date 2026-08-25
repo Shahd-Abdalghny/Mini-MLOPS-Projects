@@ -17,7 +17,11 @@ from xgboost import XGBRegressor
 
 from prodml.config import settings
 from prodml.features import build_features
+import logging
+from prodml.logging_conf import configure_logging
 
+configure_logging()
+logger = logging.getLogger(__name__)
 
 def build_pipeline(cat_cols: list[str]) -> Pipeline:
     step1 = ColumnTransformer(
@@ -39,7 +43,7 @@ def build_pipeline(cat_cols: list[str]) -> Pipeline:
 
     step2 = VotingRegressor(
         [("rf", rf), ("gbdt", gbdt), ("xgb", xgb), ("et", et)],
-        weights=[5, 1, 1, 1],
+        weights=np.array([5, 1, 1, 1]),
     )
 
     return Pipeline([("step1", step1), ("step2", step2)])
@@ -64,12 +68,12 @@ def main() -> None:
     y_pred = pipe.predict(X_test)
     r2 = r2_score(y_test, y_pred)
     mae = mean_absolute_error(y_test, y_pred)
-    print(f"R2 Score: {r2:.4f}")
-    print(f"MAE (on log price): {mae:.4f}")
+    logger.info(f"R2 Score: {r2:.4f}")
+    logger.info(f"MAE (on log price): {mae:.4f}")
 
     with open(settings.model_path, "wb") as f:
         pickle.dump(pipe, f)
-    print(f"Model saved to {settings.model_path}")
+    logger.info(f"Model saved to {settings.model_path}")
 
 
 if __name__ == "__main__":
