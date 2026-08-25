@@ -1,0 +1,11 @@
+.venv
+.git
+notebooks
+data
+tests
+__pycache__
+*.pyc
+.pytest_cache
+.coverage
+*.ipynb
+models/model.pkl
