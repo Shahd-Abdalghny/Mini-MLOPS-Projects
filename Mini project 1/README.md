@@ -207,6 +207,12 @@ Access the API from the host machine at:
 http://localhost:<PORT>/<API_ENDPOINT>
 ```
 
+You can also pull and run the image directly from Docker Hub:
+
+```bash
+docker run --rm -p 8000:8000 shahdabdelghany/laptop-price-api:0.1.0
+```
+
 The Dockerfile uses a multi-stage build to keep build dependencies separate from the runtime image and help reduce unnecessary image contents. Running as a non-root user limits privileges inside the container and improves its security posture.
 
 ## Technologies Used
